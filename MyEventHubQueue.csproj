@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <AzureFunctionsVersion>v4</AzureFunctionsVersion>
+    <OutputType>library</OutputType>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>ArcticWolf.SampleProjects.Issues.Azure</PackageId>
+    <Company>ArcticWolf</Company>
+    <PackageDescription>Function for demonstrate Azure Function dotnet pack issue.</PackageDescription>
+    <RepositoryUrl>https://github.com/rtkwlf/SATADSync</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <IsPackable>true</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Azure.Messaging.ServiceBus" Version="7.5.1" />
+    <PackageReference Include="Azure.Messaging.EventHubs" Version="5.7.0" />
+
+    <PackageReference Include="Azure.Messaging.EventHubs.Processor" Version="5.7.0" />
+    <PackageReference Include="Microsoft.Azure.EventHubs.Processor" Version="4.3.2" />
+    
+    <PackageReference Include="Microsoft.Azure.Functions.Extensions" Version="1.1.0" />
+
+    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.EventHubs" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.ServiceBus" Version="5.2.0" />
+
+    <!-- ISSUE HERE:
+      This one doesn't even give a warning.  The package is simply NOT produced.  If you leave this commented out then the Azure Function does not load!
+    -->
+    <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="4.0.1" />
+
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="host.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="local.settings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+</Project>
